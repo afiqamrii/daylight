@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f0">
+  <meta name="description" content="Your little space for everyday life. Plan, focus, build gentle rituals, journal, doodle, and spend a quiet moment with Momo the cat.">
+  <title>Daylight — A lighter day</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="stylesheet" href="./style.css">
+  <link rel="stylesheet" href="./rituals.css">
+  <link rel="stylesheet" href="./joys.css">
+  <link rel="stylesheet" href="./games.css">
+  <link rel="stylesheet" href="./helper.css">
+  <link rel="stylesheet" href="./daily.css">
+  <link rel="stylesheet" href="./muji.css">
+  <script type="module" src="./app.mjs"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to your planner</a>
+  <div class="app-shell">
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="Daylight home"><span class="brand-sun" aria-hidden="true">✳</span>daylight<span class="brand-dot">.</span></a>
+      <div class="header-middle">日々の暮らし <span> A little space for everyday life.</span></div>
+      <div class="header-actions"><span id="save-status" class="save-status">Saved on this device</span><button class="icon-btn" id="data-button" aria-label="Backup and restore" title="Backup and restore" data-icon="download"></button><button class="icon-btn help-button" id="help-button" aria-label="How Daylight works">?</button></div>
+    </header>
+
+    <main id="main">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy"><div class="eyebrow"><span class="tiny-sun" aria-hidden="true">◯</span><span id="today-date">YOUR DAILY RESET</span></div><h1 id="hero-title">A little space.<br>A <em>lighter day.</em></h1><p>Useful little things. Simple pleasures. All in one quiet place.</p></div>
+        <div class="still-life" aria-hidden="true"><svg viewBox="0 0 320 210"><ellipse class="still-shadow" cx="169" cy="181" rx="128" ry="8"/><path class="vase" d="M67 112h43l7 59q-25 12-57 0Z"/><path class="stem" d="M88 113V52m0 37q-31-4-29-28 29 3 29 28Zm0-18q31-3 36-27-28 0-36 27Z"/><path class="cup" d="M157 126h72v38q-36 19-72 0Z"/><path class="cup-handle" d="M229 133h11q17 16 0 26h-11"/><ellipse class="tea" cx="193" cy="126" rx="36" ry="7"/><path class="steam steam-a" d="M184 110q-10-13 1-25t0-24"/><path class="steam steam-b" d="M202 108q-10-13 1-25"/><path class="book" d="m121 178 18-7 101 6-11 8Z"/><path class="book-line" d="m122 182 106 7 12-9"/><circle class="still-sun" cx="253" cy="54" r="26"/></svg><span>暮らしを、少し心地よく。</span></div>
+      </section>
+
+      <div id="daily-note"></div>
+      <nav class="space-nav" aria-label="Your daily spaces"><button data-space="today" class="space-nav-button" aria-current="page"><span class="nav-number">01</span><span>My day</span></button><button data-space="rituals" class="space-nav-button"><span class="nav-number">02</span><span>Small rituals</span></button><button data-space="joys" class="space-nav-button"><span class="nav-number">03</span><span>Little joys</span></button><button data-space="games" class="space-nav-button"><span class="nav-number">04</span><span>Play a little</span></button><button data-space="helper" class="space-nav-button"><span class="nav-number">05</span><span>Ask Kumo <span class="nav-cloud" aria-hidden="true">☁</span></span></button></nav>
+      <div id="today-view" class="space-view">
+      <section class="day-overview" aria-label="Your day at a glance">
+        <div class="capacity-control"><span class="overview-icon" data-icon="sun" aria-hidden="true"></span><div><label for="capacity">Time you have today</label><div class="capacity-input"><input id="capacity" type="number" min="5" max="1440" step="5" value="120" aria-describedby="capacity-hint"><span>minutes</span></div></div><span class="sr-only" id="capacity-hint">Available time for your next tasks. Your shortlist fits this budget.</span></div>
+        <div class="stat"><span class="stat-value" id="task-stat">0<span>/ 0</span></span><span class="stat-label">tasks finished today</span></div>
+        <div class="stat"><span class="stat-value" id="focus-stat">0<span>min</span></span><span class="stat-label">time in focus today</span></div>
+        <div class="day-message"><span class="little-ring" id="progress-ring" aria-hidden="true"></span><div><strong id="progress-title">A fresh start</strong><span id="progress-copy">Small steps count, too.</span></div></div>
+      </section>
+
+      <div class="workspace">
+        <div class="main-column">
+          <section class="card task-card" aria-labelledby="tasks-heading">
+            <div class="section-heading"><div><span class="eyebrow small">GET IT OUT OF YOUR HEAD</span><h2 id="tasks-heading">Your tasks<span class="count-badge" id="active-count">0</span></h2></div><button class="text-button" id="sample-button">Try a sample day <span aria-hidden="true">↗</span></button></div>
+            <div class="tabs" role="tablist" aria-label="Task lists"><button role="tab" id="tab-today" aria-selected="true" aria-controls="task-panel" data-tab="today">Today <span id="today-count">0</span></button><button role="tab" id="tab-later" aria-selected="false" aria-controls="task-panel" data-tab="later" tabindex="-1">Later <span id="later-count">0</span></button><button role="tab" id="tab-done" aria-selected="false" aria-controls="task-panel" data-tab="done" tabindex="-1">Done <span id="done-count">0</span></button></div>
+            <form id="task-form" class="task-form">
+              <label class="sr-only" for="task-title">Task name</label><input id="task-title" maxlength="160" placeholder="What would you like to get done?" autocomplete="off" required>
+              <div class="task-form-bottom"><div class="form-options"><label class="duration-field"><span data-icon="clock" aria-hidden="true"></span><input id="task-minutes" type="number" min="5" max="480" step="5" value="25" aria-label="Estimated task minutes" required><span>min</span></label><label class="priority-field"><span class="sr-only">Priority</span><select id="task-priority" aria-label="Task priority"><option value="normal">Normal priority</option><option value="high">High priority</option><option value="low">Low priority</option></select></label></div><button type="submit" class="add-button"><span aria-hidden="true">+</span> Add task</button></div>
+            </form>
+            <div id="task-panel" role="tabpanel" aria-labelledby="tab-today"><div id="task-list" class="task-list"></div></div>
+            <div class="task-footer"><span id="task-summary">A clear page. A fresh possibility.</span><span class="keyboard-hint"><kbd>N</kbd> new task</span></div>
+          </section>
+
+          <section class="card plan-card" aria-labelledby="plan-heading">
+            <div class="plan-top"><div class="plan-mark" aria-hidden="true" data-icon="sparkles"></div><div><span class="eyebrow small">LESS DECIDING, MORE DOING</span><h2 id="plan-heading">A plan that fits.</h2></div><span class="plan-budget" id="plan-budget">2h available</span></div>
+            <p class="plan-explanation" id="plan-description">Add your tasks above. We’ll suggest a realistic shortlist, starting with your highest priorities.</p>
+            <ol id="plan-list" class="plan-list"></ol><div id="plan-note" class="plan-note" hidden></div>
+          </section>
+        </div>
+
+        <aside class="side-column" aria-label="Focus and notes">
+          <section class="focus-card" aria-labelledby="focus-heading">
+            <div class="focus-top"><span class="eyebrow small"><span class="live-dot"></span> YOUR QUIET CORNER</span><span data-icon="headphones" aria-hidden="true"></span></div><h2 id="focus-heading">One thing at a time.</h2><p class="focus-subtitle">Give this moment your attention.</p>
+            <div class="timer-dial"><svg viewBox="0 0 240 240" aria-hidden="true"><circle class="timer-track" cx="120" cy="120" r="108"/><circle id="timer-progress" class="timer-progress" cx="120" cy="120" r="108"/></svg><div class="timer-content"><span id="timer-display" class="timer-display" role="timer" aria-label="25 minutes remaining">25:00</span><span id="timer-caption">A LITTLE TIME, WELL SPENT</span></div><span class="dial-star" aria-hidden="true">✳</span></div>
+            <div class="timer-presets" role="group" aria-label="Focus duration"><button data-duration="15" aria-pressed="false">15 min</button><button data-duration="25" aria-pressed="true">25 min</button><button data-duration="50" aria-pressed="false">50 min</button></div>
+            <label for="focus-task" class="focus-select-label">FOCUS ON</label><select id="focus-task"><option value="">An open focus session</option></select>
+            <button id="timer-toggle" class="start-button"><span data-icon="play" aria-hidden="true"></span><span id="timer-toggle-text">Start focusing</span></button>
+            <div class="timer-actions"><button id="timer-reset" class="subtle-button">Reset timer</button><span aria-hidden="true">·</span><button id="timer-finish" class="subtle-button" disabled>Finish early</button></div>
+            <p class="timer-encouragement" id="timer-encouragement">You don’t have to do it all. Just begin.</p>
+          </section>
+
+          <section class="notes-card" aria-labelledby="notes-heading"><div class="notes-header"><h2 id="notes-heading">A little breathing room</h2><span data-icon="feather" aria-hidden="true"></span></div><p>Loose thoughts, bright ideas, anything.</p><label for="notes" class="sr-only">Your personal notes</label><textarea id="notes" maxlength="20000" placeholder="Leave a thought here…" spellcheck="true"></textarea><div class="note-footer"><span aria-hidden="true">↳</span><span id="notes-status">Just for you. Saved as you type.</span></div></section>
+        </aside>
+      </div>
+      </div>
+      <section id="rituals-view" class="space-view" aria-label="Small rituals" hidden></section>
+      <section id="joys-view" class="space-view" aria-label="Little joys" hidden></section>
+      <section id="games-view" class="space-view" aria-label="Play a little" hidden></section>
+      <section id="helper-view" class="space-view" aria-label="Ask Kumo" hidden></section>
+      <footer class="page-footer"><span class="footer-brand"><span aria-hidden="true">✳</span> A little better, one day at a time.</span><span>Your space. Stored in this browser.<button id="footer-data" class="text-button">Make a backup <span aria-hidden="true">↗</span></button></span></footer>
+    </main>
+  </div>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden><span id="toast-message"></span><button id="toast-action" hidden>Undo</button><button id="toast-close" aria-label="Dismiss message">×</button></div>
+  <dialog id="app-dialog"><div id="dialog-content"></div></dialog>
+</body>
+</html>
