@@ -5,13 +5,19 @@ A small daily space inspired by quiet Japanese stationery, warm paper, and simpl
 ## Inside
 
 - **My day:** task lists, priorities, time estimates, a shortlist that fits your time, a resumable focus timer, and notes.
-- **Small rituals:** editable habits with seven-day history, a cup tracker, a one-minute breathing guide, and a mood journal.
+- **Small rituals:** editable habits with seven-day history, a cup tracker, a one-minute breathing guide, a mood journal, and a sound corner with rain, warm noise, gentle chimes, three presets, and a sleep timer.
 - **Little joys:** Momo the animated cat, a decision jar, and a sketchpad with undo, eraser, and PNG export.
 - **Play a little:** matching tiles, Number Garden (a 2048-style puzzle with undo), and a solvable lantern logic puzzle. Progress and personal bests are saved.
+- **My shelf:** a reading tracker with page progress and a finished-book collection, saved links, and a jar of happy moments to revisit.
 - **Ask Kumo:** a friendly helper that can plan around your available time, suggest a smaller first step, prepare a task to add, and reflect on your small wins.
 - **A small note for today:** 48 original comforting thoughts, a saved-thought collection, and a gentle daily reminder.
+- **A tactile desk:** custom clay-style 3D artwork, a warm-light switch, small object navigation, a ceramic turntable, and gentle depth and motion. Find a space with **Ctrl/⌘ + K**.
 
 Personal data is stored in this browser. The backup button exports every space as one JSON file; restoring validates the complete file before asking to replace data. Clearing browser storage removes local data. There is no cross-device sync. Use backups when moving browsers or devices.
+
+Sound is generated on your device and starts only after you press Play. The sleep timer fades the mix to silence; reloading or restoring a backup keeps your mix settings but never resumes audio automatically. Older backups preserve newer collections when those sections are absent.
+
+The 3D hero is a generated illustration with a light pointer tilt, supported by CSS objects and shadows. See [ASSETS.md](ASSETS.md) for the artwork prompt and provenance.
 
 ## Reminders
 

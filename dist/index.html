@@ -14,6 +14,9 @@
   <link rel="stylesheet" href="./helper.css">
   <link rel="stylesheet" href="./daily.css">
   <link rel="stylesheet" href="./muji.css">
+  <link rel="stylesheet" href="./shelf.css">
+  <link rel="stylesheet" href="./sounds.css">
+  <link rel="stylesheet" href="./room.css">
   <script type="module" src="./app.mjs"></script>
 </head>
 <body>
@@ -27,12 +30,21 @@
 
     <main id="main">
       <section class="hero" aria-labelledby="hero-title">
-        <div class="hero-copy"><div class="eyebrow"><span class="tiny-sun" aria-hidden="true">◯</span><span id="today-date">YOUR DAILY RESET</span></div><h1 id="hero-title">A little space.<br>A <em>lighter day.</em></h1><p>Useful little things. Simple pleasures. All in one quiet place.</p></div>
-        <div class="still-life" aria-hidden="true"><svg viewBox="0 0 320 210"><ellipse class="still-shadow" cx="169" cy="181" rx="128" ry="8"/><path class="vase" d="M67 112h43l7 59q-25 12-57 0Z"/><path class="stem" d="M88 113V52m0 37q-31-4-29-28 29 3 29 28Zm0-18q31-3 36-27-28 0-36 27Z"/><path class="cup" d="M157 126h72v38q-36 19-72 0Z"/><path class="cup-handle" d="M229 133h11q17 16 0 26h-11"/><ellipse class="tea" cx="193" cy="126" rx="36" ry="7"/><path class="steam steam-a" d="M184 110q-10-13 1-25t0-24"/><path class="steam steam-b" d="M202 108q-10-13 1-25"/><path class="book" d="m121 178 18-7 101 6-11 8Z"/><path class="book-line" d="m122 182 106 7 12-9"/><circle class="still-sun" cx="253" cy="54" r="26"/></svg><span>暮らしを、少し心地よく。</span></div>
+        <div class="hero-copy"><div class="eyebrow"><span class="tiny-sun" aria-hidden="true">◯</span><span id="today-date">YOUR DAILY RESET</span></div><h1 id="hero-title">A little space.<br>A <em>lighter day.</em></h1><p>A place for your plans, little rituals, and things that make you smile. Settle in. There’s no rush.</p><div class="hero-actions"><button id="hero-focus" class="room-primary">Find a little focus <span aria-hidden="true">↗</span></button><button class="room-secondary" data-space="shelf">Explore my shelf <span aria-hidden="true">→</span></button></div><span class="hero-footnote"><span aria-hidden="true">✳</span> Small things, thoughtfully kept.</span></div>
+        <figure class="desk-scene" id="desk-scene"><div class="desk-halo" aria-hidden="true"></div><div class="desk-orbit" aria-hidden="true"></div><div class="desk-art"><img src="./assets/desk-3d.png" width="1536" height="1024" alt="A miniature clay desk with a cup of tea, a notebook, a little plant, and Kumo the smiling cloud." fetchpriority="high"></div><figcaption class="desk-caption"><span class="desk-caption-dot" aria-hidden="true"></span> YOUR LITTLE CORNER</figcaption><button class="desk-light" id="desk-light" aria-pressed="false"><span aria-hidden="true">☼</span> Warm light</button><span class="desk-stamp" aria-hidden="true">日々を<br>ゆっくり</span></figure>
       </section>
 
       <div id="daily-note"></div>
-      <nav class="space-nav" aria-label="Your daily spaces"><button data-space="today" class="space-nav-button" aria-current="page"><span class="nav-number">01</span><span>My day</span></button><button data-space="rituals" class="space-nav-button"><span class="nav-number">02</span><span>Small rituals</span></button><button data-space="joys" class="space-nav-button"><span class="nav-number">03</span><span>Little joys</span></button><button data-space="games" class="space-nav-button"><span class="nav-number">04</span><span>Play a little</span></button><button data-space="helper" class="space-nav-button"><span class="nav-number">05</span><span>Ask Kumo <span class="nav-cloud" aria-hidden="true">☁</span></span></button></nav>
+      <div class="spaces-label"><span>SIX LITTLE SPACES. ONE QUIETER DAY.</span><button id="quick-find" aria-keyshortcuts="Control+k Meta+k">Find something <kbd>⌘ / Ctrl K</kbd></button></div>
+      <nav class="space-nav" aria-label="Your daily spaces">
+        <button data-space="today" class="space-nav-button" aria-current="page"><span class="nav-object object-day" aria-hidden="true"><i></i></span><span class="nav-copy"><span class="nav-number">01</span><span>My day</span><small>Make a little progress</small></span></button>
+        <button data-space="rituals" class="space-nav-button"><span class="nav-object object-cup" aria-hidden="true"><i></i></span><span class="nav-copy"><span class="nav-number">02</span><span>Small rituals</span><small>Come back to yourself</small></span></button>
+        <button data-space="joys" class="space-nav-button"><span class="nav-object object-cat" aria-hidden="true"><i></i><b></b></span><span class="nav-copy"><span class="nav-number">03</span><span>Little joys</span><small>Let yourself play</small></span></button>
+        <button data-space="games" class="space-nav-button"><span class="nav-object object-dice" aria-hidden="true"></span><span class="nav-copy"><span class="nav-number">04</span><span>Play a little</span><small>A moment of curiosity</small></span></button>
+        <button data-space="shelf" class="space-nav-button"><span class="nav-object object-books" aria-hidden="true"><i></i><b></b></span><span class="nav-copy"><span class="nav-number">05</span><span>My shelf</span><small>Keep the good things</small></span></button>
+        <button data-space="helper" class="space-nav-button"><span class="nav-object object-cloud" aria-hidden="true"><i></i></span><span class="nav-copy"><span class="nav-number">06</span><span>Ask Kumo</span><small>A little company</small></span></button>
+      </nav>
+      <div class="space-intro"><div><span class="room-kicker" id="space-kicker">MAKE ROOM FOR WHAT MATTERS</span><h2 id="space-title">Your day, at your pace.</h2></div><p id="space-description">A few good intentions. One small step at a time.</p></div>
       <div id="today-view" class="space-view">
       <section class="day-overview" aria-label="Your day at a glance">
         <div class="capacity-control"><span class="overview-icon" data-icon="sun" aria-hidden="true"></span><div><label for="capacity">Time you have today</label><div class="capacity-input"><input id="capacity" type="number" min="5" max="1440" step="5" value="120" aria-describedby="capacity-hint"><span>minutes</span></div></div><span class="sr-only" id="capacity-hint">Available time for your next tasks. Your shortlist fits this budget.</span></div>
@@ -76,10 +88,11 @@
         </aside>
       </div>
       </div>
-      <section id="rituals-view" class="space-view" aria-label="Small rituals" hidden></section>
+      <section id="rituals-view" class="space-view" aria-label="Small rituals" hidden><div id="rituals-content"></div><div id="sounds-content"></div></section>
       <section id="joys-view" class="space-view" aria-label="Little joys" hidden></section>
       <section id="games-view" class="space-view" aria-label="Play a little" hidden></section>
       <section id="helper-view" class="space-view" aria-label="Ask Kumo" hidden></section>
+      <section id="shelf-view" class="space-view" aria-label="My shelf" hidden></section>
       <footer class="page-footer"><span class="footer-brand"><span aria-hidden="true">✳</span> A little better, one day at a time.</span><span>Your space. Stored in this browser.<button id="footer-data" class="text-button">Make a backup <span aria-hidden="true">↗</span></button></span></footer>
     </main>
   </div>
